@@ -2,6 +2,9 @@
 
 ## Features
 
+- tailwind
+- blog post collection
+
 ## Installation
 
 - config.yml > site_url, display_url, logo_url
