@@ -1,0 +1,81 @@
+local_backend: true
+
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+site_url: "http:://localhost:4321"
+display_url: "http:://localhost:4321"
+logo_url: "http:://localhost:4321/logo.png"
+locale: "en"
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    label_singular: "Post"
+    description: "Blog posts"
+    folder: "src/content/posts"
+    create: true
+    sortable_fields: ["pubDate", "title"]
+    fields:
+      - { label: "Thumb", name: "thumb", widget: "image" }
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - {
+          label: "Description",
+          name: "description",
+          widget: "text",
+          required: true,
+        }
+      - { label: "Link", name: "link", widget: "string", required: true }
+      - {
+          label: "Publication date",
+          name: "pubDate",
+          widget: "datetime",
+          required: true,
+        }
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        required: true
+        field: { label: "Image", name: "image", widget: "image" }
+  - name: "settings"
+    label: "Settings"
+    files:
+      - name: "general"
+        label: "General"
+        file: "src/config/general.json"
+        editor:
+          preview: false
+        fields:
+          - { label: "URL", name: "url", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Subtitle", name: "subtitle", widget: "string" }
+          - { label: "Motto", name: "motto", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "CTA", name: "cta", widget: "string" }
+          - { label: "Biography", name: "biography", widget: "markdown" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Whatsapp URL", name: "waUrl", widget: "string" }
+          - label: "Google Maps"
+            name: "googleMaps"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+          - label: "Google Calendar"
+            name: "googleCalendar"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "URL", name: "url", widget: "string" }
+              - { label: "CTA", name: "cta", widget: "string" }
+          - {
+              label: "Deploy Status Badge URL",
+              name: "netlifyStatusBadgeUrl",
+              hint: "Netlify deploy status badge URL",
+              widget: "string",
+            }
